@@ -3,7 +3,20 @@
 
 <form method="POST" action="/process-upload" enctype="multipart/form-data">
 
+<input type="hidden" name="projectId" value={{projectId}} />
 <input type="file" name="fileUpload"/>
-
+<button>Upload</button>
 
 </form>
+
+<h2>Your Files</h2>
+
+<ul>
+    {{#each fileArray}}
+    <li>
+        {{!-- <img src="{{this.fileUrl}}" alt="{{this.fileUrl}}"> --}}
+        <a href="{{this.fileUrl}}">{{this.fileUrl}}</a>
+        {{!-- <a href="/project/{{projectId}}/file/{{fileArray.}}"></a> --}}
+    </li>
+    {{/each}}
+</ul>

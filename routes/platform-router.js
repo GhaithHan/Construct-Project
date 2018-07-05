@@ -6,6 +6,7 @@ const Project = require("../models/project-model.js");
 const User = require("../models/user-model.js");
 const Task = require("../models/task-model.js");
 const Note = require("../models/note-model.js");
+const File = require("../models/file-model.js");
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ const router = express.Router();
 
 const multer = require("multer");
 const cloudinary = require("cloudinary");
-const cloudinaryStorage = require ("-storage-cloudinary");cloudinary.config({
+const cloudinaryStorage = require ("multer-storage-cloudinary");cloudinary.config({
    cloud_name: process.env.cloudinary_name,
    api_key:process.env.cloudinary_key,
    api_secret:process.env.cloudinary_secret,
@@ -21,8 +22,12 @@ const cloudinaryStorage = require ("-storage-cloudinary");cloudinary.config({
 const storage =
  cloudinaryStorage({
    cloudinary,
-   resource_type: 'raw',
-   folder: "project-files"
+//    resource_type: 'raw',
+//    type: 'raw',
+   folder: "project-files",
+   params:{
+       resource_type:"raw"
+   },
  });
 const uploader = multer({storage});
 
@@ -35,50 +40,89 @@ nodemailer.createTransport({
    }
 });
 
-router.post("process-upload", uploader.single("fileUpload"), (req, res, next) => {
+router.post("/process-upload", uploader.single("fileUpload"), (req, res, next) => {
     res.locals.layout = "layout-project.hbs";
     if(!req.user) {
         res.redirect("/login");
         return;
       }
+    
+    const { projectId, fileUrl } = req.body;
+    const { secure_url } = req.file;
 
-})
+    File.create({
+        fileUrl : secure_url,
+    })
+    .then((fileDoc) => {
+        res.redirect(`/project/${projectId}/file`)
+    })
+    .catch((err) => {
+        next(err);
+    });
+});
+
+router.get("/project/:projectId/file", (req, res, next) => {
+    res.locals.layout = "layout-project.hbs";
+    if(!req.user) {
+        res.redirect("/login");
+        return;
+      }
+    const{ projectId } =req.params;
+    console.log("---------------------------ProjectId inside files");
+    console.log(projectId);
+    File.find()
+    .then((fileResults) => {
+        res.locals.fileArray = fileResults;
+        res.render("platformProject/filePage.hbs")
+    })
+    .catch((err) => {
+        next(err);
+    });
+});
+
+
 
 router.post("/process-teamAdd", (req, res, next) => {
     res.locals.layout = "layout-project.hbs";
     if(!req.user) {
-
-        //redirect away if you arent logged in
-        // req.flash("error", "you must logged in.")
         res.redirect("/login");
         return;
       }
 
  const { userId, projectId } = req.body;
- console.log( "USER ID -------------------");
- console.log(userId);
- console.log( "PROJECT ID -------------------"); 
- console.log(projectId);
+//  console.log( "USER ID -------------------");
+//  console.log(userId);
+//  console.log( "PROJECT ID -------------------"); 
+//  console.log(projectId);
  Project.findByIdAndUpdate(
     { _id: projectId }, 
     { $addToSet : { team : { _id: userId } } }
 )
 .then(()=>{
-    User.find({userId})
+    User.findById(userId)
     .then((userDoc) => {
         transport.sendMail({
-            from : 'Express Users <exposure@example.com>',
-            to : `<${userDoc.email}>`,
-            subject : "Thank you for joigning our service :camel: !" ,
-            text : `Welcome ! You are ONE OF USE NOW 🐈 !`,
+            from : 'The Construct Team <exposure@example.com>',
+            to : userDoc.email,
+            subject : "Thank you for joigning our Wonderful Team 🐫 !" ,
+            text : `Welcome ${userDoc.firstName} ${userDoc.lastName} ! You are ONE OF USE NOW 🐈 !`,
             html : `
-            <h1 style="color:orange;">Welcome !</h1>
-            <p>You are ONE OF USE NOW 🐈 !</p>
+            <h1 style="color:orange;">Welcome ${userDoc.firstName}!</h1>
+            <p>You are ONE OF US NOW 🤗 !</p>
+            <p>We are looking forward to colaborate with you in this project !</p>
+            <p>Be an active player 👽 in this process :</p>
+            <ul>
+            <li>Check the project progress 🍺!</li>
+            <li>Be aware of the tasks that have been assigned to you 📞!</li>
+            <li>Add new notes 🎫!</li>
+            <li>Upload the necessary files ⛔!</li>
+            </ul>
+            <p>Don't worry ! The payment will be honored (or not...😂)</p>
             `,
         })
-    })
-  .then(() => {
-      res.redirect(`project/${projectId}/team`);
+        .then(() => {
+            res.redirect(`/project/${projectId}/team`);
+        })
   });
 })
   .catch((err) => {
@@ -89,15 +133,13 @@ router.post("/process-teamAdd", (req, res, next) => {
 router.get("/project/:projectId/team", (req, res, next) => {
 
     if(!req.user) {
-        //redirect away if you arent logged in
-        // req.flash("error", "you must logged in.")
         res.redirect("/login");
         return;
       }
 
       const { projectId } = req.params;
-      console.log( "PROJECT ID -------------------");
-      console.log(projectId)
+    //   console.log( "PROJECT ID -------------------");
+    //   console.log(projectId)
     User.find()
     .then((userResults) =>{
         res.locals.layout = "layout-project.hbs";
@@ -106,8 +148,6 @@ router.get("/project/:projectId/team", (req, res, next) => {
         .populate( "team" )
         .then((actualProject) => {
             res.locals.memberTeamAdded = actualProject.team;
-            console.log( "team member-------------------");
-            // console.log(memberTeamAdded);
             res.render("platformProject/teamPage.hbs")
         })
         
@@ -120,56 +160,43 @@ router.get("/project/:projectId/team", (req, res, next) => {
 
 
 
-// router.post("/process-task", (req, res, next) => {
-//     res.locals.layout = "layout-project.hbs";
-//     if(!req.user) {
-//         //redirect away if you arent logged in
-//         // req.flash("error", "you must logged in.")
-//         res.redirect("/login");
-//         return;
-//       }
+router.post("/process-task", (req, res, next) => {
+    res.locals.layout = "layout-project.hbs";
+    if(!req.user) {
+        res.redirect("/login");
+        return;
+      }
     
-//       const { projectId, taskTitle, taskDescription, taskAssignedTo, taskStartDate, taskDeadline } = req.body;
-//       Task.create({ owner: req.user._id, taskTitle, taskDescription, taskAssignedTo, taskStartDate, taskDeadline } )
-//       .then((taskDoc) => {
-//         //   res.locals.newTask = taskDoc;
-//           res.redirect(`project/${projectId}/task`);
-//       })
-//       .catch((err) => {
-//           next(err);
-//       });
-// });
+      const { taskAssignedId, projectId, taskTitle, taskDescription, taskAssignedTo, taskStartDate, taskDeadline } = req.body;
+      Task.create({ owner: req.user._id, taskTitle, taskDescription, taskAssignedTo, taskStartDate, taskDeadline } )
+      .then((taskDoc) => {
+        //   res.locals.newTask = taskDoc;
+          res.redirect(`project/${projectId}/task`);
+      })
+      .catch((err) => {
+          next(err);
+      });
+});
 
-// router.get("/project/:projectId/task", (req, res, next) => {
-//     // res.send(req.body);
-//     // return;
-//     res.locals.layout = "layout-project.hbs";
-//     if(!req.user) {
-//         //redirect away if you arent logged in
-//         // req.flash("error", "you must logged in.")
-//         res.redirect("/login");
-//         return;
-//       }
-//       const { projectId } = req.params;
+router.get("/project/:projectId/task", (req, res, next) => {
+    // res.send(req.body);
+    // return;
+    res.locals.layout = "layout-project.hbs";
+    if(!req.user) {
+        res.redirect("/login");
+        return;
+      }
+      const { projectId } = req.params;
 
-//       Project.find({projectId})
-//       .then((projectResult) => {
-//         console.log("-----------projectId")
-//         console.log(projectId);
-//         res.locals.actualProject = projectResult;
-//         console.log("---------------actualProject");
-//         console.log(actualProject);
-//           Task.findById({owner : req.user._id})
-//           .populate("taskAssignedTo")
-//           .then(teamTask)
-          
-//           res.locals.taskTeamAdded = teamTask;
-//           res.render("platformProject/taskPage.hbs")
-//       })
-//       .catch((err) => {
-//           next(err);
-//       });
-// });
+      Project.find({projectId})
+      .then((projectResult) => {
+        res.locals.actualProjectTeam = projectResult.team;
+          res.render("platformProject/taskPage.hbs")
+      })
+      .catch((err) => {
+          next(err);
+      });
+});
 
 
 
