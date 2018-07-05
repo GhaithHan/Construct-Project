@@ -40,45 +40,57 @@ nodemailer.createTransport({
    }
 });
 
-router.post("/process-upload", uploader.single("fileUpload"), (req, res, next) => {
-    res.locals.layout = "layout-project.hbs";
-    if(!req.user) {
-        res.redirect("/login");
-        return;
-      }
+// router.post("/process-upload", uploader.single("fileUpload"), (req, res, next) => {
+//     res.locals.layout = "layout-project.hbs";
+//     if(!req.user) {
+//         res.redirect("/login");
+//         return;
+//       }
 
-    const { projectId, fileUrl } = req.body;
-    const { secure_url } = req.file;
+//     const { projectId, fileUrl } = req.body;
+//     const { secure_url } = req.file;
 
-    File.create({
-        fileUrl : secure_url,
-    })
-    .then((fileDoc) => {
-        res.redirect(`/project/${projectId}/file`)
-    })
-    .catch((err) => {
-        next(err);
-    });
-});
+//     File.create({
+//         fileUrl : secure_url,
+//     })
+//     .then((fileDoc) => {
+//         res.redirect(`/project/${projectId}/file`)
+//     })
+//     .catch((err) => {
+//         next(err);
+//     });
+// });
 
-router.get("/project/:projectId/file", (req, res, next) => {
-    res.locals.layout = "layout-project.hbs";
-    if(!req.user) {
-        res.redirect("/login");
-        return;
-      }
-    const{ projectId } =req.params;
-    console.log("---------------------------ProjectId inside files");
-    console.log(projectId);
-    File.find()
-    .then((fileResults) => {
-        res.locals.fileArray = fileResults;
-        res.render("platformProject/filePage.hbs")
-    })
-    .catch((err) => {
-        next(err);
-    });
-});
+// router.get("/project/:projectId/file", (req, res, next) => {
+//     res.locals.layout = "layout-project.hbs";
+//     if(!req.user) {
+//         res.redirect("/login");
+//         return;
+//       }
+//     const{ projectId } =req.params;
+//     console.log("---------------------------ProjectId inside files");
+//     console.log(projectId);
+//     File.find()
+//     .then((fileResults) => {
+//         res.locals.fileArray = fileResults;
+//         res.render("platformProject/filePage.hbs")
+//     })
+//     .catch((err) => {
+//         next(err);
+//     });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -204,17 +216,19 @@ router.post("/process-note", (req, res, next) => {
         res.redirect("/login");
         return;
       }
-      const { noteDeclaredId, projectId, noteCreater, noteContent } = req.body;
-      Note.create({  noteDeclaredId, noteCreater, noteContent } )
+      const {  projectId, noteCreater, noteContent } = req.body;
+      Note.create({   noteCreater, noteContent } )
       .then((noteDoc) => {
         console.log("----------------------------noteDoc");
         console.log(noteDoc);
+        console.log(noteDoc._id);
         Project.findByIdAndUpdate(
+                    
             { _id: projectId },
-            { $addToSet : { notes : { _id: noteDeclaredId } } }
+            { $addToSet : { notes : { _id: noteDoc._id } } }
         )
         .then(()=>{
-            res.redirect(`/project/${projectId}/note`);
+            res.redirect(`project/${projectId}/note`);
         })
     })
     .catch((err) => {

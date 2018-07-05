@@ -5,10 +5,13 @@ const Schema = mongoose.Schema;
 
 const noteSchema = new Schema({
 
-    // noteCreater: {type: String, required: true},
-    noteCreater: {type: String},
-    noteContent: {type: String, required: true}
-
+    noteCreater: {type: String, required: true},
+    // noteCreater: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "User",
+    //     required: true
+    //     },
+    noteContent: {type: String, required: true},
    }, {
 
     timestamps: true
