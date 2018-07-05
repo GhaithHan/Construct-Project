@@ -8,6 +8,14 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+router.get('/about', (req, res, next) => {
+  res.render('about-page.hbs');
+});
+
+router.get('/contact', (req, res, next) => {
+  res.render('contact-page.hbs');
+});
+
 router.get("/settings", (req, res, next) => {
   if(!req.user) {
 
@@ -38,7 +46,7 @@ router.post("/process-settings", (req, res, next) => {
     const encryptedPassword = bcrypt.hashSync(newPassword, 10);
     changes = { firstName, lastName, encryptedPassword };
   }
-  
+
 
   User.findByIdAndUpdate(
     req.user._id,
