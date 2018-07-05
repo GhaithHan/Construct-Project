@@ -1,0 +1,40 @@
+<h2>Add a Task</h2>
+
+
+
+<form method ="POST" action="/process-task">
+
+<input type="hidden" name="projectId" value={{projectId}} />
+
+   <label>
+       Title : 
+       <input type="text" name="taskTitle" placeholder="Install the light" />
+   </label>
+   <br />
+
+   <label>
+       Description : 
+       <input type="text" name="taskDescription" placeholder="We need to install the lights in all the first floor." />
+   </label>
+   <br />
+
+    <label>
+       Assigned to : 
+       <input type="text" name="taskAssignedTo" placeholder="Remi Lalande" />
+   </label>
+   <br />
+
+    <label>
+       Date of Start : 
+       <input type="date" name="taskStartDate" placeholder="08/12/2018" />
+   </label>
+   <br />
+
+    <label>
+       Deadline : 
+       <input type="date" name="taskDeadline" placeholder="08/21/2018" />
+   </label>
+   <br />
+
+<button>Save This Task</button>
+</form>

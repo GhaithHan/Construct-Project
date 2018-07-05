@@ -1,0 +1,13 @@
+<h2>The project you are participating in</h2>
+
+<ul>
+   {{#each projectArrayParticipated}}
+    <li>
+        <h3>{{this.projectName}}</h3>
+        <p>{{this.clientName}}</p>
+        <a href="/project/{{this._id}}/project">Access the project</a>
+    </li>
+   {{else}}
+   <p>You are not participating in any project.</p>
+  {{/each}}
+</ul>

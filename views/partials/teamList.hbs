@@ -1,0 +1,10 @@
+<h2>Your Team</h2>
+<ul>
+     {{#each memberTeamAdded}}
+     <li>
+                    <h3>{{this.firstName}} {{this.lastName}}</h3>
+                    <h4>{{this.job}}</h4>
+                    <a href="mailto:{{this.email}}">Email</a>
+     </li>
+     {{/each}}
+</ul>
