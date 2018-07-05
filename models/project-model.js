@@ -12,6 +12,14 @@ const projectSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Task",
     }],
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: "Note",
+    }],
+    files: [{
+        type: Schema.Types.ObjectId,
+        ref: "File",
+    }],
     team : [
         {
         type: Schema.Types.ObjectId,

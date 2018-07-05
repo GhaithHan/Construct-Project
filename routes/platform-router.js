@@ -159,43 +159,102 @@ router.get("/project/:projectId/team", (req, res, next) => {
 });
 
 
+// router.post("/process-note", (req, res, next) => {
+//     res.locals.layout = "layout-project.hbs";
+//     if(!req.user) {
+//         res.redirect("/login");
+//         return;
+//       }
+
+//       const { projectId, noteCreater, noteContent } = req.body;
+//       Note.create({ noteCreater, noteContent } )
+//       .then((noteDoc) => {
+//         //   res.locals.newTask = taskDoc;
+//           res.redirect(`/project/${projectId}/note`);
+//       })
+//       .catch((err) => {
+//           next(err);
+//       });
+// });
+
+// router.get("/project/:projectId/note", (req, res, next) => {
+//     // res.send(req.body);
+//     // return;
+//     res.locals.layout = "layout-project.hbs";
+//     if(!req.user) {
+//         res.redirect("/login");
+//         return;
+//       }
+//       const { projectId } = req.params;
+
+//       Note.find()
+//       .then((noteResult) => {
+//         res.locals.noteArray = noteResult;
+//           res.render("platformProject/notePage.hbs")
+//       })
+//       .catch((err) => {
+//           next(err);
+//       });
+// });
+
+
 router.post("/process-note", (req, res, next) => {
     res.locals.layout = "layout-project.hbs";
     if(!req.user) {
         res.redirect("/login");
         return;
       }
-
-      const { projectId, noteCreater, noteContent } = req.body;
-      Note.create({ noteCreater, noteContent } )
+      const { noteDeclaredId, projectId, noteCreater, noteContent } = req.body;
+      Note.create({  noteDeclaredId, noteCreater, noteContent } )
       .then((noteDoc) => {
-        //   res.locals.newTask = taskDoc;
-          res.redirect(`/project/${projectId}/note`);
-      })
-      .catch((err) => {
-          next(err);
-      });
+        console.log("----------------------------noteDoc");
+        console.log(noteDoc);
+        Project.findByIdAndUpdate(
+            { _id: projectId },
+            { $addToSet : { notes : { _id: noteDeclaredId } } }
+        )
+        .then(()=>{
+            res.redirect(`/project/${projectId}/note`);
+        })
+    })
+    .catch((err) => {
+        next(err);
+    });
 });
 
+
 router.get("/project/:projectId/note", (req, res, next) => {
-    // res.send(req.body);
-    // return;
     res.locals.layout = "layout-project.hbs";
     if(!req.user) {
         res.redirect("/login");
         return;
       }
       const { projectId } = req.params;
-
-      Note.find()
-      .then((noteResult) => {
-        res.locals.noteArray = noteResult;
-          res.render("platformProject/notePage.hbs")
-      })
-      .catch((err) => {
+      Project.findById(projectId)
+      .populate("notes")
+      .then((projectResult) => {
+          console.log("----------------------------Actual Project ");
+          console.log(projectResult);
+        res.locals.notesArray = projectResult.notes;
+        res.render("platformProject/notePage.hbs")
+        // console.log("----------------------------Actual note ");
+        //   console.log(notesArray);
+    })
+    .catch((err) => {
           next(err);
       });
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 router.post("/process-task", (req, res, next) => {

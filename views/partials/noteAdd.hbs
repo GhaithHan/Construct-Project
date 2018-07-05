@@ -2,7 +2,12 @@
 
 
 <form method ="POST" action="/process-note">
+
+
     <input type="hidden" name="projectId" value={{projectId}} />
+    <input  type="hidden" name="noteDeclaredId" value={{noteDeclaredId}} />
+
+
     <label>
        Full Name :
        <input type="text" name="noteCreater" placeholder="Zaha Hadid" />
@@ -11,6 +16,7 @@
 
     <label>
        Note :
+
        <input type="text" name="noteContent" placeholder="Tell us more" />
    </label>
    <br />
