@@ -210,6 +210,78 @@ router.get("/project/:projectId/team", (req, res, next) => {
 // });
 
 
+// Route fot FILES ----------------------------------------------------------
+// --------------------------------------------------------------------------
+
+
+
+
+
+
+//     File.create({
+//         fileUrl : secure_url,
+//     })
+//     .then((fileDoc) => {
+//         res.redirect(`/project/${projectId}/file`)
+//     })
+//     .catch((err) => {
+//         next(err);
+//     });
+// });
+
+router.post("/process-upload", uploader.single("fileUpload"), (req, res, next) => {
+    res.locals.layout = "layout-project.hbs";
+    if(!req.user) {
+        res.redirect("/login");
+        return;
+      }
+      const { projectId, fileUrl } = req.body;
+      const { secure_url } = req.file;
+      File.create({  
+          fileUrl : secure_url,
+      })
+      .then((fileDoc) => {
+        Project.findByIdAndUpdate(
+                    
+            { _id: projectId },
+            { $addToSet : { files : { _id: fileDoc._id } } }
+        )
+        .then(()=>{
+            res.redirect(`project/${projectId}/file`);
+        })
+    })
+    .catch((err) => {
+        next(err);
+    });
+});
+
+
+router.get("/project/:projectId/file", (req, res, next) => {
+    res.locals.layout = "layout-project.hbs";
+    if(!req.user) {
+        res.redirect("/login");
+        return;
+      }
+      const { projectId } = req.params;
+      Project.findById(projectId)
+      .populate("files")
+      .then((projectResult) => {
+        res.locals.filesArray = projectResult.files;
+        res.render("platformProject/filePage.hbs")
+   
+    })
+    .catch((err) => {
+          next(err);
+      });
+});
+
+
+
+
+
+// Route fot NOTES ----------------------------------------------------------
+// --------------------------------------------------------------------------
+
 router.post("/process-note", (req, res, next) => {
     res.locals.layout = "layout-project.hbs";
     if(!req.user) {
