@@ -1,0 +1,19 @@
+<h2>Add a Note</h2>
+
+
+<form method ="POST" action="/process-note">
+    <input type="hidden" name="projectId" value={{projectId}} />
+    <label>
+       Full Name :
+       <input type="text" name="noteCreater" placeholder="Zaha Hadid" />
+   </label>
+   <br />
+
+    <label>
+       Note :
+       <input type="text" name="noteContent" placeholder="Tell us more" />
+   </label>
+   <br />
+
+<button>Save This Note</button>
+</form>

@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
 
-  console.log('IronGenerator JS imported successfully!');
+//   console.log('IronGenerator JS imported successfully!');
 
-}, false);
+// }, false);
 
 
-// function assignTask() {
-//   $("#buttonAssignedTo").on("click", function() {
-    
-//   })
-// }
+function assignTask() {
+  $("#buttonAssignedTo").on("click", function() {
+    // Select the field with the id "assignedid" and set its value to this.fullname
+  })
+}

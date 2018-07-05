@@ -5,7 +5,7 @@
      <li>
                     <h3>{{this.firstName}} {{this.lastName}}</h3>
                     <h4>{{this.job}}</h4>
-                    <button class="buttonAssignedTo">Assign task</button>
+                    <button id="buttonAssignedTo">Assign task</button>
      </li>
      {{/each}}
 </ul>
@@ -17,32 +17,32 @@
 <input type="hidden" name="projectId" value={{projectId}} />
 
    <label>
-       Title : 
+       Title :
        <input type="text" name="taskTitle" placeholder="Install the light" />
    </label>
    <br />
 
    <label>
-       Description : 
+       Description :
        <input type="text" name="taskDescription" placeholder="We need to install the lights in all the first floor." />
    </label>
    <br />
 
     <label>
-       Assigned to : 
-       <input type="hidden" name="taskAssignedTo" value={{taskAssignedId}}/>
-       <input class="" type="text" name="taskAssignedTo" placeholder="Remi Lalande" readonly/>
+       Assigned to :
+       <input id="taskAssignedId" type="hidden" name="taskAssignedId" value=""/>
+       <input id="taskAssignedTo" type="text" name="taskAssignedTo" placeholder="Remi Lalande" readonly/>
    </label>
    <br />
 
     <label>
-       Date of Start : 
+       Date of Start :
        <input type="date" name="taskStartDate" placeholder="08/12/2018" />
    </label>
    <br />
 
     <label>
-       Deadline : 
+       Deadline :
        <input type="date" name="taskDeadline" placeholder="08/21/2018" />
    </label>
    <br />

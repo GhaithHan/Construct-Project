@@ -8,6 +8,10 @@ const projectSchema = new Schema({
     startOfProject : { type: Date, required: true},
     endOfProject : { type: Date, required: true},
     adress : { type: String, required: true},
+    tasks: [{
+        type: Schema.Types.ObjectId,
+        ref: "Task",
+    }],
     team : [
         {
         type: Schema.Types.ObjectId,

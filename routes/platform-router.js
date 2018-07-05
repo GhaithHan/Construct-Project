@@ -46,7 +46,7 @@ router.post("/process-upload", uploader.single("fileUpload"), (req, res, next) =
         res.redirect("/login");
         return;
       }
-    
+
     const { projectId, fileUrl } = req.body;
     const { secure_url } = req.file;
 
@@ -92,10 +92,10 @@ router.post("/process-teamAdd", (req, res, next) => {
  const { userId, projectId } = req.body;
 //  console.log( "USER ID -------------------");
 //  console.log(userId);
-//  console.log( "PROJECT ID -------------------"); 
+//  console.log( "PROJECT ID -------------------");
 //  console.log(projectId);
  Project.findByIdAndUpdate(
-    { _id: projectId }, 
+    { _id: projectId },
     { $addToSet : { team : { _id: userId } } }
 )
 .then(()=>{
@@ -150,7 +150,7 @@ router.get("/project/:projectId/team", (req, res, next) => {
             res.locals.memberTeamAdded = actualProject.team;
             res.render("platformProject/teamPage.hbs")
         })
-        
+
     })
     .catch((err) => {
         next(err);
@@ -159,6 +159,44 @@ router.get("/project/:projectId/team", (req, res, next) => {
 });
 
 
+router.post("/process-note", (req, res, next) => {
+    res.locals.layout = "layout-project.hbs";
+    if(!req.user) {
+        res.redirect("/login");
+        return;
+      }
+
+      const { projectId, noteCreater, noteContent } = req.body;
+      Note.create({ noteCreater, noteContent } )
+      .then((noteDoc) => {
+        //   res.locals.newTask = taskDoc;
+          res.redirect(`/project/${projectId}/note`);
+      })
+      .catch((err) => {
+          next(err);
+      });
+});
+
+router.get("/project/:projectId/note", (req, res, next) => {
+    // res.send(req.body);
+    // return;
+    res.locals.layout = "layout-project.hbs";
+    if(!req.user) {
+        res.redirect("/login");
+        return;
+      }
+      const { projectId } = req.params;
+
+      Note.find()
+      .then((noteResult) => {
+        res.locals.noteArray = noteResult;
+          res.render("platformProject/notePage.hbs")
+      })
+      .catch((err) => {
+          next(err);
+      });
+});
+
 
 router.post("/process-task", (req, res, next) => {
     res.locals.layout = "layout-project.hbs";
@@ -166,12 +204,16 @@ router.post("/process-task", (req, res, next) => {
         res.redirect("/login");
         return;
       }
-    
       const { taskAssignedId, projectId, taskTitle, taskDescription, taskAssignedTo, taskStartDate, taskDeadline } = req.body;
-      Task.create({ owner: req.user._id, taskTitle, taskDescription, taskAssignedTo, taskStartDate, taskDeadline } )
+      Task.create({ owner: req.user._id, taskAssignedId, taskTitle, taskDescription, taskAssignedTo, taskStartDate, taskDeadline } )
       .then((taskDoc) => {
-        //   res.locals.newTask = taskDoc;
-          res.redirect(`project/${projectId}/task`);
+        Project.findByIdAndUpdate(
+            { _id: projectId },
+            { $addToSet : { tasks : { _id: taskAssignedId } } }
+        )
+            .then(()=>{
+                res.redirect(`project/${projectId}/task`);
+            })
       })
       .catch((err) => {
           next(err);
@@ -187,17 +229,21 @@ router.get("/project/:projectId/task", (req, res, next) => {
         return;
       }
       const { projectId } = req.params;
-
-      Project.find({projectId})
+      Project.findById(projectId)
+      .populate("team")
       .then((projectResult) => {
+        res.locals.tasksArray = projectResult.tasks;
         res.locals.actualProjectTeam = projectResult.team;
-          res.render("platformProject/taskPage.hbs")
+        console.log("----------------------------Actual Project Team");
+        console.log(projectResult);
+
+
+        res.render("platformProject/taskPage.hbs")
       })
       .catch((err) => {
           next(err);
       });
 });
-
 
 
 
