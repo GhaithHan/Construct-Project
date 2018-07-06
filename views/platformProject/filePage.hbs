@@ -1,22 +1,35 @@
-<h2>Upload Files</h2>
+<div class="filePage">
+    <div class="filePage-Upload">
+        <div>
+            <h2>Upload Files</h2>
+        </div>
 
+        <div>
+            <form method="POST" action="/process-upload" enctype="multipart/form-data">
+            <input type="hidden" name="projectId" value={{projectId}} />
+            <input type="file" name="fileUpload"/>
+            <button>Upload</button>
+            </form>
+        </div>
 
-<form method="POST" action="/process-upload" enctype="multipart/form-data">
+    </div>
+    <div class="filePage-Form">
+        <div>
+            <h2>Your Files</h2>
+        </div>
+        <div>
+            <ul>
+                {{#each filesArray}}
+                    <div>
+                        <li>
+                        {{!-- <img src="{{this.fileUrl}}" alt="{{this.fileUrl}}"> --}}
+                            <a href="{{this.fileUrl}}">{{this.fileUrl}}</a>
+                        {{!-- <a href="/project/{{projectId}}/file/{{fileArray.}}"></a> --}}
+                        </li>
+                    </div>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
 
-<input type="hidden" name="projectId" value={{projectId}} />
-<input type="file" name="fileUpload"/>
-<button>Upload</button>
-
-</form>
-
-<h2>Your Files</h2>
-
-<ul>
-    {{#each filesArray}}
-    <li>
-        {{!-- <img src="{{this.fileUrl}}" alt="{{this.fileUrl}}"> --}}
-        <a href="{{this.fileUrl}}">{{this.fileUrl}}</a>
-        {{!-- <a href="/project/{{projectId}}/file/{{fileArray.}}"></a> --}}
-    </li>
-    {{/each}}
-</ul>

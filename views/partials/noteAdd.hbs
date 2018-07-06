@@ -1,26 +1,31 @@
-<h2>Add a Note</h2>
+<div class="AddingNotes">
+    <div>
+        <h2>Add a Note</h2>
+    </div>
+    <div>
+        <form method ="POST" action="/process-note">
+            <input type="hidden" name="projectId" value={{projectId}}/>
+            <div>
+                <label>
+                    Full Name :
+                    <input type="hidden" name="noteCreaterId" value={{noteCreaterId}} />
+                    <input type="text" name="noteCreater" placeholder="Zaha Hadid" />
+                </label>
+                <br />
+            </div>
+            <div>
+                <label>
+                    Note :
+                    <input type="text" name="noteContent" placeholder="Tell us more" />
+                </label>
+                <br />
+            </div>
 
+            <div>
+                <button>Save This Note</button>
+            </div>
+        </form>
+    </div>
 
-<form method ="POST" action="/process-note">
+</div>
 
-
-    <input type="hidden" name="projectId" value={{projectId}} />
-    
-
-
-    <label>
-       Full Name :
-       <input type="hidden" name="noteCreaterId" value={{noteCreaterId}} />
-       <input type="text" name="noteCreater" placeholder="Zaha Hadid" />
-   </label>
-   <br />
-
-    <label>
-       Note :
-
-       <input type="text" name="noteContent" placeholder="Tell us more" />
-   </label>
-   <br />
-
-<button>Save This Note</button>
-</form>

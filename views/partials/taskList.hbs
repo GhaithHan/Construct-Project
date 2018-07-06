@@ -1,15 +1,36 @@
-<h2>Existing Tasks</h2>
+<div class="taskPage-taskList">
+    <div class="taskPage-taskList-title">
+    <h2>Existing Tasks</h2>
 
-<ul>
-   {{#each tasksArray}}
-    <li>
-        <h3>{{this.taskTitle}}</h3>
-        <h4>{{this.taskAssignedTo}}</h4>
-        <p>{{this.taskStartDate}}</p>
-        <p>{{this.taskDeadline}}</p>
-        <p>{{this.taskDescription}}</p>
-    </li>
-   {{else}}
-   <p>You don't have any tasks yet.</p>
-  {{/each}}
-</ul>
+    </div>
+    <div class="taskPage-taskList-list">
+        <ul>
+        {{#each tasksArray}}
+        <div class="taskPage-taskList-each">
+            <li>
+                <div>
+                    <h3>{{this.taskTitle}}</h3>
+                </div>
+                <div>
+                    <h4>{{this.taskAssignedTo}}</h4>
+                </div>
+                <div>
+                    <p>{{this.taskStartDate}}</p>
+                </div>
+                <div>
+                    <p>{{this.taskDeadline}}</p>
+                </div>
+                <div>
+                    <p>{{this.taskDescription}}</p>
+                </div>
+            </li>
+            {{else}}
+            <div class="taskPage-taskList-list-else">
+                <p>You don't have any tasks yet.</p>
+            </div>
+        </div>
+        {{/each}}
+        </ul>
+    </div>
+
+</div>

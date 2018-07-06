@@ -1,13 +1,28 @@
-<h2>{{projectItem.projectName}}</h2>
+{{!-- <div class="projectDisplay">
+    <h2>{{projectItem.projectName}}</h2>
 
-<h3>Client Name : {{projectItem.clientName}}</h3>
-<h4>Adress : {{projectItem.adress}}</h4>
-<h5>From {{projectItem.startOfProject}} to {{projectItem.endOfProject}}</h5>
-{{!-- <p>{{formatDate projectItem.startOfProject "short"}}</p> --}}
+    <h3>Client Name : {{projectItem.clientName}}</h3>
+    <h4>Adress : {{projectItem.adress}}</h4>
+    <h5>From {{projectItem.startOfProject}} to {{projectItem.endOfProject}}</h5>
 
-<p>Description :
-    <br />
-    {{projectItem.projectDescription}}
+    <p>Description :
+        <br />
+        {{projectItem.projectDescription}}
 
-</p>
-<p>Check Your Team <a href="/project/{{projectId}}/team">HERE</a>!</p>
+    </p>
+    <p>Check Your Team <a href="/project/{{projectId}}/team">HERE</a>!</p>
+</div> --}}
+
+<div class="projectDisplay">
+    <h2>{{projectItem.projectName}}</h2>
+
+    <h3>{{projectItem.clientName}}</h3>
+    <h4>{{projectItem.adress}}</h4>
+    <h5>From {{projectItem.startOfProject}} to {{projectItem.endOfProject}}</h5>
+    {{!-- <p>{{formatDate projectItem.startOfProject "short"}}</p> --}}
+
+    <p>
+        {{projectItem.projectDescription}}
+    </p>
+    <p>Check Your Team <a href="/project/{{projectId}}/team">HERE</a>!</p>
+</div>

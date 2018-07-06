@@ -1,27 +1,39 @@
-<h2>team add</h2>
-<ul>
-     {{#each userListArray}}
-     <li>
-         <form method="POST" action="/process-teamAdd">
+<div class="teamAdd">
+    <div>
+        <h2>Add a new member</h2>
+    </div>
+    <div class="teamPostList">
+        <ul>
+        {{#each userListArray}}
+        <div class="teamPostEach">
+            <li>
+                <form method="POST" action="/process-teamAdd">
+                    <input type="hidden" name="userId" value={{this._id}} />
+                    <input type="hidden" name="projectId" value={{../projectId}} />
+                    <br />
+                    <div>
+                        <h3>{{this.firstName}} {{this.lastName}}</h3>
+                    </div>
+                    <div>
+                        <h4>{{this.job}}</h4>
+                    </div>
+                    <div>
+                        <a href="mailto:{{this.email}}">Email</a>
+                    </div>
+                    </br>
+                    <div>
+                        <button>Add To Team</button>
+                    </div>
+                </form>
+            </li>
+        </div>
+            {{/each}}
+        </ul>
 
-                    
-       <input type="hidden" name="userId" value={{this._id}} />
-       <input type="hidden" name="projectId" value={{../projectId}} />
-                   
-       <br /> 
+    </div>
 
-         
+</div>
 
-       <h3>{{this.firstName}} {{this.lastName}}</h3>
-                    <h4>{{this.job}}</h4>
-                    <a href="mailto:{{this.email}}">Email</a>
-                    <button>Add To Team</button>
-
-         </form>
-     </li>
-     {{/each}}
-
-</ul>
 
 
 

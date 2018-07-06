@@ -1,8 +1,354 @@
 // body {
-//   padding: 50px;
-//   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  // padding: 50px;
+
+  // height: 80vh;
 // }
 
 // a {
 //   color: #00B7FF;
+//   text-decoration-line: none;
 // }
+
+ul {
+  list-style-type: none;
+  }
+
+.concernantBodyOne{
+  font-family: 'Markazi Text', serif;
+}
+
+.projectDisplay{
+  display: flex;
+  flex-direction: column;
+   height: 300px;
+   justify-content: center;
+   align-items: center;
+   margin-top: 150px;
+   text-align: center;
+}
+
+.projectDisplay h2 {
+  font-size: 15vh;
+}
+
+.projectDisplay h3 {
+  font-size: 5vh;
+}
+
+.projectDisplay h4 {
+  font-size: 5vh;
+}
+
+.projectDisplay h5 {
+  font-size: 2vh;
+}
+
+.projectDisplay p {
+  font-size: 3vh;
+}
+
+.teamList .teamListTitle h2{
+  font-size: 5vh;
+  // text-decoration-style: wavy;
+}
+
+.navigationTabs {
+  color: white;
+  text-decoration: none;
+  background-color: orange;
+  -webkit-text-decoration-skip: objects;
+  width: 14vw;
+}
+
+.team-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+  text-align: center;
+  // border: 1px solid green;
+}
+
+.teamPage{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+  // border: 1px solid red;
+}
+
+.teamList{
+  display: flex;
+  flex-direction: column;
+  //  height: 300px;
+   justify-content: space-evenly;
+  //  border: 1px solid pink;
+   align-items: center;
+  //  margin-top: 50px;
+  text-align: center;
+}
+
+.notePage{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+  // border: 1px solid red;
+
+}
+
+.notePageDisplay{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  // border: 1px solid black;
+  width: 100vw;
+  text-align: center;
+}
+
+.DisplayingNotes{
+  display: flex;
+  flex-direction: column;
+  //  height: 300px;
+  justify-content: space-evenly;
+  width: 50vw;
+  // border: 1px solid yellow;
+  // align-items: center;
+  //  margin-top: 50px;
+  // border: 1px solid red
+  // text-align: center;
+}
+.AddingNotes{
+  display: flex;
+  // border: 1px solid pink;
+  flex-direction: column;
+  //  height: 300px;
+  justify-content: space-evenly;
+  width: 50vw;
+  // align-items: center;
+  //  margin-top: 50px;
+  // border: 1px solid red
+  // text-align: center;
+}
+
+// .notePageDisplay{
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   width: 100vw;
+//   text-align: center;
+// }
+
+.teamList{
+  display: flex;
+  flex-direction: column;
+  //  height: 300px;
+   justify-content: space-evenly;
+  //  border: 1px solid pink;
+   align-items: center;
+  //  margin-top: 50px;
+  text-align: center;
+}
+
+.teamAdd{
+  display: flex;
+  flex-direction: column;
+  //  height: 300px;
+  justify-content: space-evenly;
+  width: 50vw;
+  align-items: center;
+  //  margin-top: 50px;
+  // border: 1px solid red
+  text-align: center;
+}
+
+.teamAdd .teamPostList{
+  display: flex;
+  flex-direction: column;
+  //  height: 300px;
+  justify-content: space-evenly;
+  width: 50vw;
+  align-items: center;
+  //  margin-top: 50px;
+  // border: 1px solid red
+  text-align: center;
+}
+
+.teamList .teamListList {
+  display: flex;
+  flex-direction: column;
+  //  height: 300px;
+  justify-content: space-evenly;
+  width: 50vw;
+  align-items: center;
+  //  margin-top: 50px;
+  // border: 1px solid red
+  text-align: center;
+}
+
+
+.teamAdd .teamPostList .teamPostEach{
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  // border: 1px solid blue;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+.teamList .teamListList .teamListEach{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+  // align-content: center;
+  width: 50vw;
+  // border: 1px solid blue;
+  // margin: 10px;
+  // padding: 10%
+  text-align: center;
+}
+// a {
+//     color: white;
+//     text-decoration: none;
+//     background-color: orange;
+//     -webkit-text-decoration-skip: objects;
+// }
+
+footer .footerLayoutOne {
+  background-color: black;
+  color: black;
+  border: 1px solid black;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  // width: 10vw;
+  text-align: center;
+}
+
+.navigationTotal{
+  display:flex;
+  justify-content:space-around;
+  font-family: 'Markazi Text', serif;
+  font-size: 27px;
+  text-align: center;
+}
+
+// footer .navbar-flex{
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+// }
+
+// .taskPage-taskList-title{
+//   display: flex;
+//   flex-direction: column;
+//    justify-content: space-evenly;
+//    align-items: center;
+//    text-align: center;
+// }
+
+// .taskPageDisplay{
+//   display: flex;
+//   flex-direction: column;
+//    justify-content: space-evenly;
+//    align-items: center;
+//    text-align: center;
+// }
+
+.taskPage{
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+}
+// .taskPage{
+//   display: flex;
+//   flex-direction: column;
+//    justify-content: space-evenly;
+//    align-items: center;
+//    text-align: center;
+// }
+.taskPage-taskList{
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+}
+.taskPage-taskList-list{
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+}
+.taskPage-taskForm{
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+}
+.taskPage-taskForm-assign{
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+}
+.taskPage-taskForm-add {
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+}
+.taskPage-taskForm-add-form {
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+}
+
+.filePage{
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+   padding: 10%;
+   width: 100vw;
+}
+
+.filePage-Upload{
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+  //  padding: 5%;
+   width: 100vw;
+   height: 10%;
+}
+
+.filePage-Form{
+  display: flex;
+  flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   text-align: center;
+   padding: 5%;
+   width: 100vw;
+   height: 10%;
+}

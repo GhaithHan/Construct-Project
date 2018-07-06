@@ -1,51 +1,79 @@
-<h2>Select to whom you assign the next task</h2>
+<div class="taskPage-taskForm">
+    <div class="taskPage-taskForm-assign">
+        <divclass="taskPage-taskForm-assign-title">
+            <h2>Select to whom you assign the next task</h2>
+        </div>
+        <div class="taskPage-taskForm-assign-display">
+            <ul>
+                {{#each actualProjectTeam}}
+                    <div class="taskPage-taskForm-Assign-displayEach">
+                        <li>
+                            <div>
+                                <h3>{{this.firstName}} {{this.lastName}}</h3>
+                            </div>
+                            <div>
+                                <h4>{{this.job}}</h4>
 
-<ul>
-     {{#each actualProjectTeam}}
-     <li>
-                    <h3>{{this.firstName}} {{this.lastName}}</h3>
-                    <h4>{{this.job}}</h4>
-                    <button id="buttonAssignedTo">Assign task</button>
-     </li>
-     {{/each}}
-</ul>
+                            </div>
+                            <div class="taskPage-taskForm-assign-displayBtn">
+                                <button id="buttonAssignedTo">Assign task</button>
+                            </div>
+                        </li>
+                    </div>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <divclass="taskPage-taskForm-add">
+        <div class="taskPage-taskForm-add-title">
+            <h2>Add a Task</h2>
+        </div>
+        <div class="taskPage-taskForm-add-form">
+            <form method ="POST" action="/process-task">
+                <input type="hidden" name="projectId" value={{projectId}} />
+                <div>
+                    <label>
+                    Title :
+                        <input type="text" name="taskTitle" placeholder="Install the light" />
+                    </label>
+                    <br />
+                </div>
+                <div>
+                    <label>
+                        Description :
+                            <input type="text" name="taskDescription" placeholder="We need to install the lights in all the first floor." />
+                    </label>
+                    <br />
+                </div>
+                <div>
+                    <label>
+                        Assigned to :
+                            <input id="taskAssignedId" type="hidden" name="taskAssignedId" value=""/>
+                            <input id="taskAssignedTo" type="text" name="taskAssignedTo" placeholder="Remi Lalande" readonly/>
+                    </label>
+                    <br />
+                </div>
 
-<h2>Add a Task</h2>
+                <div>
+                    <label>
+                        Date of Start :
+                            <input type="date" name="taskStartDate" placeholder="08/12/2018" />
+                    </label>
+                    <br />
+                </div>
 
-<form method ="POST" action="/process-task">
+                <div>
+                    <label>
+                        Deadline :
+                            <input type="date" name="taskDeadline" placeholder="08/21/2018" />
+                    </label>
+                    <br />
+                </div>
 
-<input type="hidden" name="projectId" value={{projectId}} />
-
-   <label>
-       Title :
-       <input type="text" name="taskTitle" placeholder="Install the light" />
-   </label>
-   <br />
-
-   <label>
-       Description :
-       <input type="text" name="taskDescription" placeholder="We need to install the lights in all the first floor." />
-   </label>
-   <br />
-
-    <label>
-       Assigned to :
-       <input id="taskAssignedId" type="hidden" name="taskAssignedId" value=""/>
-       <input id="taskAssignedTo" type="text" name="taskAssignedTo" placeholder="Remi Lalande" readonly/>
-   </label>
-   <br />
-
-    <label>
-       Date of Start :
-       <input type="date" name="taskStartDate" placeholder="08/12/2018" />
-   </label>
-   <br />
-
-    <label>
-       Deadline :
-       <input type="date" name="taskDeadline" placeholder="08/21/2018" />
-   </label>
-   <br />
-
-<button>Save This Task</button>
-</form>
+                <div>
+                    <button>Save This Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

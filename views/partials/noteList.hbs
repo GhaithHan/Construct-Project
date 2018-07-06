@@ -1,11 +1,25 @@
-<h2>Existing Notes</h2>
-<ul>
-   {{#each notesArray}}
-    <li>
-        <h3>{{this.noteCreater}}</h3>
-        <p>{{this.noteContent}}</p>
-    </li>
-   {{else}}
-   <p>You don't have any notes yet.</p>
-  {{/each}}
-</ul>
+<div class="DisplayingNotes">
+    <div>
+        <h2>Existing Notes</h2>
+    </div>
+    <div>
+        <ul>
+        {{#each notesArray}}
+        <div>
+            <li>
+                <div>
+                    <h3>{{this.noteCreater}}</h3>
+                </div>
+                <div>
+                    <p>{{this.noteContent}}</p>
+                </div>
+            </li>
+        <div>
+        {{else}}
+        <p>You don't have any notes yet.</p>
+        </div>
+        </div>
+        {{/each}}
+        </ul>
+    </div>
+</div>
