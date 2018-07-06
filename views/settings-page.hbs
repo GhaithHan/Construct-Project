@@ -1,32 +1,34 @@
-<h2>User Settings</h2>
+<h2 class="settings-title">User Settings</h2>
 
-{{!-- {{> flashMessages}} --}}
+<div  class="settings-dispos">
 
 <form method="POST" action="/process-settings">
-  <label>
-     First Name:
-      <input type="text" name="firstName" value="{{blahUser.firstName}}"  />
-  </label>
-  <br />
+ <label>
+    First Name:
+     <input type="text" name="firstName" value="{{blahUser.firstName}}"  />
+ </label>
+ <br />
 
-  <label>
-     Last Name:
-      <input type="text" name="lastName" value="{{blahUser.lastName}}"  />
-  </label>
-  <br />
+ <label>
+    Last Name:
+     <input type="text" name="lastName" value="{{blahUser.lastName}}"  />
+ </label>
+ <br />
 
-  <h3>Change Your Password</h3>
-  <label>
-      Old passsword:
-      <input type="password" name="oldPassword" placeholder="*****" />
-  </label>
-  <br />
+ <h3>Change Your Password</h3>
+ <label>
+     Old passsword:
+     <input type="password" name="oldPassword" placeholder="*****" />
+ </label>
+ <br />
 
-  <label>
-      New Password:
-      <input type="password" name="newPassword" placeholder="*****" />
-  </label>
-  <br />
+ <label>
+     New Password:
+     <input type="password" name="newPassword" placeholder="*****" />
+ </label>
+ <br />
 
 <button>Save Settings</button>
 </form>
+
+</div>

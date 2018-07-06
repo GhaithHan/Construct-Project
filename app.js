@@ -58,6 +58,7 @@ passportSetup(app);
 
 // default value for title local
 app.locals.title = 'Construct - Managing your Project';
+app.locals.titleTwo = 'Your Project - Construct';
 
 const index = require('./routes/index');
 app.use('/', index);

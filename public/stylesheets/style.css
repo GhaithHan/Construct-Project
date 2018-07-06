@@ -5,12 +5,14 @@ ul {
   font-family: 'Markazi Text', serif; }
 
 .projectDisplay {
+  background-image: url(https://www.verdict.co.uk/wp-content/uploads/2017/11/shutterstock_617032220.jpg);
+  background-repeat: none;
+  background-size: cover;
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
   text-align: center; }
 
 .projectDisplay h2 {
@@ -46,6 +48,9 @@ ul {
   text-align: center; }
 
 .teamPage {
+  background-image: url(http://sharedmachine.in/gyan/wp-content/uploads/2017/04/construction-team-920x613.jpg);
+  background-repeat: none;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -229,5 +234,117 @@ footer .footerLayoutOne {
   padding: 5%;
   width: 100vw;
   height: 10%; }
+
+.about-container {
+  justify-content: center; }
+
+.about-presentation {
+  margin-top: 120px;
+  text-align: center;
+  font-family: 'Markazi Text', serif; }
+
+.about-presentation h2 {
+  font-size: 50px; }
+
+.about-presentation p {
+  font-size: 30px; }
+
+.title-about {
+  margin-top: 50px;
+  font-family: 'Markazi Text', serif;
+  text-align: center;
+  font-size: 60px; }
+
+.col {
+  float: left; }
+
+.col-3 {
+  width: 30%; }
+
+.flex-container {
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+  flex-direction: column; }
+
+.auth-style {
+  font-family: 'Markazi Text', serif; }
+
+.contact-title {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-family: 'Markazi Text', serif;
+  font-size: 50px;
+  text-align: center; }
+
+.contact-presentation {
+  font-size: 1.9em;
+  margin-bottom: 25px;
+  padding: 0 100px;
+  text-align: center;
+  font-family: 'Markazi Text', serif; }
+
+.contact-presentation .address {
+  font-style: normal;
+  font-size: 0.8em;
+  margin-bottom: 30px; }
+
+.contact-presentation .follow-us-item {
+  list-style-type: none; }
+
+.contact-presentation .link {
+  color: #43a3e6;
+  text-decoration: none; }
+
+.contact-presentation .map-frame {
+  height: 375px;
+  float: right;
+  width: 60%; }
+
+.settings-title {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-family: 'Markazi Text', serif;
+  font-size: 50px;
+  text-align: center; }
+
+.settings-dispos {
+  font-family: 'Markazi Text', serif;
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px; }
+
+.profile-title {
+  font-size: 80px; }
+
+.userprofile-buttons {
+  display: flex;
+  flex-direction: row; }
+
+.create-project {
+  margin-left: 50px; }
+
+.link-profile {
+  font-size: 35px; }
+
+.contact-compagny {
+  font-size: 50px; }
+
+.my-projects {
+  font-family: 'Markazi Text', serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 100px;
+  flex-direction: row;
+  align-self: center; }
+
+.title-project-list {
+  font-family: 'Markazi Text', serif;
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

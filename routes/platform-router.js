@@ -237,12 +237,12 @@ router.post("/process-upload", uploader.single("fileUpload"), (req, res, next) =
       }
       const { projectId, fileUrl } = req.body;
       const { secure_url } = req.file;
-      File.create({  
+      File.create({
           fileUrl : secure_url,
       })
       .then((fileDoc) => {
         Project.findByIdAndUpdate(
-                    
+
             { _id: projectId },
             { $addToSet : { files : { _id: fileDoc._id } } }
         )
@@ -268,7 +268,7 @@ router.get("/project/:projectId/file", (req, res, next) => {
       .then((projectResult) => {
         res.locals.filesArray = projectResult.files;
         res.render("platformProject/filePage.hbs")
-   
+
     })
     .catch((err) => {
           next(err);
@@ -295,7 +295,7 @@ router.post("/process-note", (req, res, next) => {
         console.log(noteDoc);
         console.log(noteDoc._id);
         Project.findByIdAndUpdate(
-                    
+
             { _id: projectId },
             { $addToSet : { notes : { _id: noteDoc._id } } }
         )
@@ -354,7 +354,7 @@ router.post("/process-task", (req, res, next) => {
       .then((taskDoc) => {
         Project.findByIdAndUpdate(
             { _id: projectId },
-            { $addToSet : { tasks : { _id: taskAssignedId } } }
+            { $addToSet : { tasks : { _id: taskDoc._id } } }
         )
             .then(()=>{
                 res.redirect(`project/${projectId}/task`);
@@ -376,6 +376,7 @@ router.get("/project/:projectId/task", (req, res, next) => {
       const { projectId } = req.params;
       Project.findById(projectId)
       .populate("team")
+      .populate("tasks")
       .then((projectResult) => {
         res.locals.tasksArray = projectResult.tasks;
         res.locals.actualProjectTeam = projectResult.team;

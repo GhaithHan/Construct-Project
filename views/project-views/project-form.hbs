@@ -1,43 +1,48 @@
-<h2>Add a Project</h2>
+<h2 class="settings-title">Add a Project</h2>
 
+
+<div class="settings-dispos">
 
 
 <form method ="POST" action="/process-project">
 
-   <label>
-       Project Name :
-       <input type="text" name="projectName" placeholder="La Philharmonie" />
-   </label>
-   <br />
+  <label>
+      Project Name :
+      <input type="text" name="projectName" placeholder="La Philharmonie" />
+  </label>
+  <br />
+
+  <label>
+      Client Name :
+      <input type="text" name="clientName" placeholder="La Ville de Paris" />
+  </label>
+  <br />
 
    <label>
-       Client Name :
-       <input type="text" name="clientName" placeholder="La Ville de Paris" />
-   </label>
-   <br />
+      Date of Start :
+      <input type="date" name="startOfProject" placeholder="06/03/2006" />
+  </label>
+  <br />
 
-    <label>
-       Date of Start :
-       <input type="date" name="startOfProject" placeholder="06/03/2006" />
-   </label>
-   <br />
+   <label>
+      Date of End :
+      <input type="date" name="endOfProject" placeholder="14/01/2006" />
+  </label>
+  <br />
 
-    <label>
-       Date of End :
-       <input type="date" name="endOfProject" placeholder="14/01/2006" />
-   </label>
-   <br />
+   <adress>
+      Adress :
+      <input type="text" name="adress" placeholder="Paris" />
+  </label>
+  <br />
 
-    <adress>
-       Adress :
-       <input type="text" name="adress" placeholder="Paris" />
-   </label>
-   <br />
-
-    <label>
-       Project description :
-       <input type="text" name="projectDescription" placeholder="Paris" />
-   </label>
-   <br />
+   <label>
+      Project description :
+      <input type="text" name="projectDescription" placeholder="Paris" />
+  </label>
+  <br />
 <button>Save This Project</button>
 </form>
+
+
+</div>
