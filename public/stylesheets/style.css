@@ -48,7 +48,7 @@ ul {
   text-align: center; }
 
 .teamPage {
-  background-image: url(http://sharedmachine.in/gyan/wp-content/uploads/2017/04/construction-team-920x613.jpg);
+  background-image: url(https://www.matele.be/uploads/articles/77572/2_construction-de-128-appartements-a-neffe-un-projet-inacceptable-quo-20180419185315.JPG);
   background-repeat: none;
   background-size: cover;
   display: flex;
@@ -346,5 +346,18 @@ footer .footerLayoutOne {
 .title-project-list {
   font-family: 'Markazi Text', serif;
   text-align: center; }
+
+.font {
+  font-family: 'Markazi Text', serif; }
+
+.imageBR {
+  background-image: url(https://www.talk-business.co.uk/wp-content/uploads/2015/03/Fotolia_65151091_S-1.jpg);
+  background-repeat: none;
+  background-size: cover;
+  height: 91vh;
+  width: vw; }
+
+.whiteText {
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */
